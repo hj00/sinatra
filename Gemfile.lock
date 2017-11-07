@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
+    innate (2015.10.28)
+      rack (~> 1.6.4)
+    mini_portile2 (2.3.0)
+    multi_xml (0.6.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
+    rack (1.6.8)
+    rake (12.2.1)
+    ramaze (2012.12.08)
+      innate (>= 2012.12)
+      rake
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  httparty
+  nokogiri
+  ramaze
+
+BUNDLED WITH
+   1.16.0
