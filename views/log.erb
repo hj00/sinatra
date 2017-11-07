@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <title>잡동사니</title>
+    </head>
+    <body>
+        <h1>LOL 전적 검색 로그</h1>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>Wins</th>
+                <th>Loses</th>
+                <th>Time</th>
+            </tr>
+            <% @log.each do |elem| %>
+            <tr>
+                <% elem.each do |row| %>
+                <th>
+                    <%= row %>
+                </th>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </body>
+</html>

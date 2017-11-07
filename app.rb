@@ -2,6 +2,8 @@ require 'sinatra'
 require 'httparty'
 require 'nokogiri'
 require 'uri'
+require 'date'
+require 'csv'
 
 
 get '/lol' do
@@ -16,7 +18,26 @@ get '/search' do
     text = Nokogiri::HTML(response.body)
     @win = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.wins')
     @lose = text.css('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.losses')
+    
+    # File.open("log.txt", 'a+') do |f|
+    #     f.write("#{@id}, #{@win.text}, #{@lose.text}, " + Time.now.to_s + "\n")
+    # end
+    
+    CSV.open("log.csv", 'a+') do |csv|
+        csv << [@id, @win.text, @lose.text, Time.now.to_s]
+        
+    end
+    
     erb :search
+end
+
+get '/log' do
+    @log = []
+    CSV.foreach('log.csv') do |row|
+        @log << row            
+    end
+    
+    erb :log
 end
 
 # get '/' do
